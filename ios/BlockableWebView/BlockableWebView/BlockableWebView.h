@@ -6,8 +6,34 @@
 //  Copyright © 2016 Rafael Seemann. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "RCTView.h"
 
-@interface BlockableWebView : NSObject
+@class BlockableWebView;
+
+/**
+ * Special scheme used to pass messages to the injectedJavaScript
+ * code without triggering a page load. Usage:
+ *
+ *   window.location.href = RCTJSNavigationScheme + '://hello'
+ */
+extern NSString *const RCTJSNavigationScheme;
+
+@protocol BlockableWebViewDelegate <NSObject>
+
+@interface BlockableWebView : RCTView
+
+@property (nonatomic, weak) id<BlockableWebViewDelegate> delegate;
+
+@property (nonatomic, copy) NSDictionary *source;
+@property (nonatomic, assign) UIEdgeInsets contentInset;
+@property (nonatomic, assign) BOOL automaticallyAdjustContentInsets;
+@property (nonatomic, copy) NSString *injectedJavaScript;
+@property (nonatomic, assign) BOOL scalesPageToFit;
+
+- (void)goForward;
+- (void)goBack;
+- (void)reload;
+- (void)stopLoading;
+
 
 @end
