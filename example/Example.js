@@ -11,6 +11,10 @@ import {
   View
 } from 'react-native';
 
+import BlockableWebView from 'react-native-blockable-webview';
+
+console.log(BlockableWebView);
+
 export default class example extends Component {
   render() {
     return (
