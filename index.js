@@ -45,7 +45,7 @@ import processDecelerationRate from 'react-native/Libraries/Components/ScrollVie
 import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
 
 var PropTypes = React.PropTypes;
-var RCTWebViewManager = NativeModules.WebViewManager;
+var BlockableWebViewManager = NativeModules.BlockableWebViewManager;
 
 var BGWASH = 'rgba(255,255,255,0.8)';
 var RCT_WEBVIEW_REF = 'webview';
@@ -340,21 +340,6 @@ class WebView extends React.Component {
      * to tap them before they start playing. The default value is `true`.
      */
     mediaPlaybackRequiresUserAction: PropTypes.bool,
-
-    /**
-     * Rules that will be used to block or allow the loading of a request
-     */
-    navigationBlockingRules: PropTypes.arrayOf(PropTypes.shape({
-      currentURL: PropTypes.string,
-      navigationType: PropTypes.string,
-      url: PropTypes.string,
-    })),
-
-    /**
-     * Function that is invoked when the `WebView` navigation is blocked by the
-     * `noLoadingPolicies`.
-     */
-    onNavigationBlocked: PropTypes.func,
   };
 
   state = {
@@ -401,7 +386,7 @@ class WebView extends React.Component {
     var onShouldStartLoadWithRequest = this.props.onShouldStartLoadWithRequest && ((event: Event) => {
       var shouldStart = this.props.onShouldStartLoadWithRequest &&
         this.props.onShouldStartLoadWithRequest(event.nativeEvent);
-      RCTWebViewManager.startLoadWithResult(!!shouldStart, event.nativeEvent.lockIdentifier);
+      BlockableWebViewManager.startLoadWithResult(!!shouldStart, event.nativeEvent.lockIdentifier);
     });
 
     var decelerationRate = processDecelerationRate(this.props.decelerationRate);
@@ -414,7 +399,7 @@ class WebView extends React.Component {
     }
 
     var webView =
-      <RCTWebView
+      <BlockableWebView
         ref={RCT_WEBVIEW_REF}
         key="webViewKey"
         style={webViewStyles}
@@ -433,8 +418,6 @@ class WebView extends React.Component {
         allowsInlineMediaPlayback={this.props.allowsInlineMediaPlayback}
         mediaPlaybackRequiresUserAction={this.props.mediaPlaybackRequiresUserAction}
         dataDetectorTypes={this.props.dataDetectorTypes}
-        navigationBlockingRules={this.props.navigationBlockingRules}
-        onNavigationBlocked={this.props.onNavigationBlocked}
       />;
 
     return (
@@ -451,7 +434,7 @@ class WebView extends React.Component {
   goForward = () => {
     UIManager.dispatchViewManagerCommand(
       this.getWebViewHandle(),
-      UIManager.RCTWebView.Commands.goForward,
+      UIManager.BlockableWebView.Commands.goForward,
       null
     );
   };
@@ -462,7 +445,7 @@ class WebView extends React.Component {
   goBack = () => {
     UIManager.dispatchViewManagerCommand(
       this.getWebViewHandle(),
-      UIManager.RCTWebView.Commands.goBack,
+      UIManager.BlockableWebView.Commands.goBack,
       null
     );
   };
@@ -474,7 +457,7 @@ class WebView extends React.Component {
     this.setState({viewState: WebViewState.LOADING});
     UIManager.dispatchViewManagerCommand(
       this.getWebViewHandle(),
-      UIManager.RCTWebView.Commands.reload,
+      UIManager.BlockableWebView.Commands.reload,
       null
     );
   };
@@ -485,7 +468,7 @@ class WebView extends React.Component {
   stopLoading = () => {
     UIManager.dispatchViewManagerCommand(
       this.getWebViewHandle(),
-      UIManager.RCTWebView.Commands.stopLoading,
+      UIManager.BlockableWebView.Commands.stopLoading,
       null
     );
   };
@@ -537,7 +520,7 @@ class WebView extends React.Component {
   };
 }
 
-var RCTWebView = requireNativeComponent('RCTWebView', WebView, {
+var BlockableWebView = requireNativeComponent('BlockableWebView', WebView, {
   nativeOnly: {
     onLoadingStart: true,
     onLoadingError: true,
