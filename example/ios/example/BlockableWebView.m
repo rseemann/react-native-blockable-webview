@@ -26,6 +26,8 @@
 @property (nonatomic, copy) RCTDirectEventBlock onLoadingFinish;
 @property (nonatomic, copy) RCTDirectEventBlock onLoadingError;
 @property (nonatomic, copy) RCTDirectEventBlock onShouldStartLoadWithRequest;
+@property (nonatomic, copy) RCTDirectEventBlock onNavigationBlocked;
+@property (nonatomic, copy) NSArray *navigationBlockingPolicies;
 
 @end
 

@@ -48,6 +48,10 @@ RCT_REMAP_VIEW_PROPERTY(allowsInlineMediaPlayback, _webView.allowsInlineMediaPla
 RCT_REMAP_VIEW_PROPERTY(mediaPlaybackRequiresUserAction, _webView.mediaPlaybackRequiresUserAction, BOOL)
 RCT_REMAP_VIEW_PROPERTY(dataDetectorTypes, _webView.dataDetectorTypes, UIDataDetectorTypes)
 
+RCT_EXPORT_VIEW_PROPERTY(onNavigationBlocked, RCTDirectEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(navigationBlockingPolicies, NSArray)
+
+
 RCT_EXPORT_METHOD(goBack:(nonnull NSNumber *)reactTag)
 {
   [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, BlockableWebView *> *viewRegistry) {

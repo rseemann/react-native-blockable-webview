@@ -12,8 +12,6 @@ import {
 
 import BlockableWebView from 'react-native-blockable-webview';
 
-console.log(BlockableWebView);
-
 export default class example extends Component {
   render() {
     const source = {uri: "https://github.com/facebook/react-native"};
