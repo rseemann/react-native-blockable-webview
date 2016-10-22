@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "packager": "node_modules/react-native/packager/packager.sh",
-    "test": "jest"
+    "test": "jest",
+    "sync": "rm -rf ./node_modules/react-native-blockable-webview; sane '/usr/bin/rsync -v -a --exclude .git --exclude example --exclude node_modules ../ ./node_modules/react-native-blockable-webview/' .. --glob='{**/*.json,**/*.js}'"
   },
   "dependencies": {
     "react": "15.3.2",
