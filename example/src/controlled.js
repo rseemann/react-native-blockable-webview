@@ -15,7 +15,7 @@ export default class Controlled extends Component {
   }
 
   onNavigationBlocked({ nativeEvent }) {
-    this.props.navigator.push({ scene: 'login' });
+    this.props.navigator.push({ scene: 'login', url: nativeEvent.url });
   }
 
   render() {

@@ -28,17 +28,17 @@ export default class App extends Component {
   }
 
   renderScene(route, navigator) {
-    console.log(route);
+    const { scene, ...props } = route;
 
-    switch (route.scene) {
+    switch (scene) {
       case 'welcome':
-        return <Welcome navigator={navigator} />;
+        return <Welcome navigator={ navigator } { ...props } />;
       case 'controlled':
-        return <Controlled navigator={navigator}/>;
+        return <Controlled navigator={ navigator } { ...props } />;
       case 'free':
         return <Free />;
       case 'login':
-        return <Login navigator={navigator}/>;
+        return <Login navigator={ navigator } { ...props } />;
       default:
 
     }

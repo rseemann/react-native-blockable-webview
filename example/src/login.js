@@ -8,11 +8,12 @@ import {
 } from 'react-native';
 
 export default function login(props) {
-  const onPress = props.navigator.pop;
+  const { navigator: { pop }, url } = props;
 
   return (
     <View style={styles.container}>
-      <TouchableHighlight style={styles.button} onPress={onPress}>
+      <Text style={styles.info}>{`After login the user will be taken to: ${url}`}</Text>
+      <TouchableHighlight style={styles.button} onPress={pop}>
         <Text style={styles.buttonText}>Magical login!</Text>
       </TouchableHighlight>
     </View>
@@ -34,5 +35,9 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     textAlign: 'center',
+  },
+  info: {
+    textAlign: 'center',
+    fontSize: 20,
   }
 });
