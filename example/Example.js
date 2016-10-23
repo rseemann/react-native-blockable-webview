@@ -24,7 +24,7 @@ export default class example extends Component {
   }
 
   render() {
-    const source = {uri: 'https://github.com/facebook/react-native'};
+    const source = { uri: 'https://github.com/facebook/react-native'};
     const policy = [{url: 'https://github.com/facebook/react-native/issues'}];
 
     return (

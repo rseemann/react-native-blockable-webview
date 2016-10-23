@@ -276,11 +276,6 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
   if (_onLoadingStart) {
     // We have this check to filter out iframe requests and whatnot
     if (isTopFrame) {
-      NSMutableDictionary<NSString *, id> *event = [self baseEvent];
-      [event addEntriesFromDictionary: @{
-                                         @"url": (request.URL).absoluteString,
-                                         @"navigationType": navigationTypes[@(navigationType)]
-                                         }];
       _onLoadingStart(event);
     }
   }
