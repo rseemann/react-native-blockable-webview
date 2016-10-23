@@ -20,6 +20,12 @@ extern NSString *const RCTJSNavigationScheme;
 
 @protocol BlockableWebViewDelegate <NSObject>
 
+- (BOOL)webView:(BlockableWebView *)webView
+shouldStartLoadForRequest:(NSMutableDictionary<NSString *, id> *)request
+   withCallback:(RCTDirectEventBlock)callback;
+
+@end
+
 @interface BlockableWebView : RCTView
 
 @property (nonatomic, weak) id<BlockableWebViewDelegate> delegate;
