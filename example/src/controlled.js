@@ -1,31 +1,28 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
+  Text,
 } from 'react-native';
 
 import BlockableWebView from 'react-native-blockable-webview';
 
-export default class example extends Component {
+export default class Controlled extends Component {
   constructor(props) {
     super(props);
 
     this.onNavigationBlocked = this.onNavigationBlocked.bind(this);
   }
 
-  onNavigationBlocked(request) {
-    console.log(request);
+  onNavigationBlocked({ nativeEvent }) {
+    this.props.navigator.push({ scene: 'login' });
   }
 
   render() {
-    const source = { uri: 'https://github.com/facebook/react-native'};
-    const policy = [{url: 'https://github.com/facebook/react-native/issues'}];
+    const source = { uri: 'https://github.com/rseemann/react-native-blockable-webview'};
+    // const policy = [{url: `${source.uri}/issues`}];
+    // const policy = [{url: 'https://github.com/login'}];
+    const policy = [{url: 'https://github.com/login.*'}];
 
     return (
       <View style={styles.container}>
@@ -44,6 +41,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'stretch',
     backgroundColor: '#F5FCFF',
+  },
+  loading: {
+    textAlign: 'center',
   },
   webview: {
     marginTop: 20,
