@@ -3,6 +3,7 @@ import {
   StyleSheet,
   View,
   Text,
+  Linking,
 } from 'react-native';
 
 import BlockableWebView from 'react-native-blockable-webview';
@@ -15,14 +16,29 @@ export default class Controlled extends Component {
   }
 
   onNavigationBlocked({ nativeEvent }) {
-    this.props.navigator.push({ scene: 'login', url: nativeEvent.url });
+    const { url } = nativeEvent;
+
+    const hostname = new URL(url).hostname;
+
+    if (hostname === 'github.com') {
+      this.props.navigator.push({ scene: 'login', url });
+      return;
+    }
+
+    Linking.openURL(url);
   }
 
   render() {
     const source = { uri: 'https://github.com/rseemann/react-native-blockable-webview'};
     // const policy = [{url: `${source.uri}/issues`}];
     // const policy = [{url: 'https://github.com/login'}];
-    const policy = [{url: 'https://github.com/login.*'}];
+    const policy = [
+      {
+        url: 'https://github.com/login.*',
+      }, {
+        url: '^((?!(github.com)).)*$',
+      }
+    ];
 
     return (
       <View style={styles.container}>
