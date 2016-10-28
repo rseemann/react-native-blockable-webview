@@ -8,6 +8,16 @@ import {
 
 import BlockableWebView from 'react-native-blockable-webview';
 
+const POLICY = [
+  {
+    // blocks navigation to login page
+    url: 'https://github.com/login.*',
+  }, {
+    // blocks any navigation to url that doesn't contain github.com
+    url: '^((?!(github.com)).)*$',
+  }
+];
+
 export default class Controlled extends Component {
   constructor(props) {
     super(props);
@@ -30,20 +40,11 @@ export default class Controlled extends Component {
 
   render() {
     const source = { uri: 'https://github.com/rseemann/react-native-blockable-webview'};
-    // const policy = [{url: `${source.uri}/issues`}];
-    // const policy = [{url: 'https://github.com/login'}];
-    const policy = [
-      {
-        url: 'https://github.com/login.*',
-      }, {
-        url: '^((?!(github.com)).)*$',
-      }
-    ];
 
     return (
       <View style={styles.container}>
         <BlockableWebView style={styles.webview} source={source}
-          navigationBlockingPolicies={policy}
+          navigationBlockingPolicies={POLICY}
           onNavigationBlocked={this.onNavigationBlocked}
         />
       </View>
