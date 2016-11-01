@@ -12,6 +12,7 @@
 
 var EdgeInsetsPropType = require('EdgeInsetsPropType');
 var ActivityIndicator = require('ActivityIndicator');
+var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
 var React = require('React');
 var ReactNative = require('react/lib/ReactNative');
 var ReactNativeViewAttributes = require('ReactNativeViewAttributes');
@@ -28,6 +29,7 @@ var resolveAssetSource = require('resolveAssetSource');
 var PropTypes = React.PropTypes;
 
 var RCT_WEBVIEW_REF = 'webview';
+var WEBVIEW_BLOCKED_EVENT = 'navigationBlocked'
 
 var WebViewState = keyMirror({
   IDLE: null,
@@ -153,6 +155,20 @@ class WebView extends React.Component {
      * start playing. The default value is `false`.
      */
     mediaPlaybackRequiresUserAction: PropTypes.bool,
+
+    /**
+     * Rules that will be used to block the webview navigation
+     */
+    navigationBlockingPolicies: PropTypes.arrayOf(PropTypes.shape({
+      currentURL: PropTypes.string,
+      url: PropTypes.string,
+    })),
+
+    /**
+     * Function that is invoked when the `WebView` navigation is blocked by the
+     * `navigationBlockingPolicies`.
+     */
+    onNavigationBlocked: PropTypes.func,
   };
 
   static defaultProps = {
@@ -170,6 +186,8 @@ class WebView extends React.Component {
     if (this.props.startInLoadingState) {
       this.setState({viewState: WebViewState.LOADING});
     }
+
+    RCTDeviceEventEmitter.addListener(WEBVIEW_BLOCKED_EVENT, this.onNavigationBlocked);
   }
 
   render() {
@@ -208,7 +226,7 @@ class WebView extends React.Component {
     }
 
     var webView =
-      <RCTWebView
+      <BlockableWebView
         ref={RCT_WEBVIEW_REF}
         key="webViewKey"
         style={webViewStyles}
@@ -226,6 +244,8 @@ class WebView extends React.Component {
         onLoadingError={this.onLoadingError}
         testID={this.props.testID}
         mediaPlaybackRequiresUserAction={this.props.mediaPlaybackRequiresUserAction}
+        onNavigationBlocked={this.props.onNavigationBlocked}
+        navigationBlockingPolicies={this.props.navigationBlockingPolicies}
       />;
 
     return (
@@ -239,7 +259,7 @@ class WebView extends React.Component {
   goForward = () => {
     UIManager.dispatchViewManagerCommand(
       this.getWebViewHandle(),
-      UIManager.RCTWebView.Commands.goForward,
+      UIManager.BlockableWebView.Commands.goForward,
       null
     );
   };
@@ -247,7 +267,7 @@ class WebView extends React.Component {
   goBack = () => {
     UIManager.dispatchViewManagerCommand(
       this.getWebViewHandle(),
-      UIManager.RCTWebView.Commands.goBack,
+      UIManager.BlockableWebView.Commands.goBack,
       null
     );
   };
@@ -255,7 +275,7 @@ class WebView extends React.Component {
   reload = () => {
     UIManager.dispatchViewManagerCommand(
       this.getWebViewHandle(),
-      UIManager.RCTWebView.Commands.reload,
+      UIManager.BlockableWebView.Commands.reload,
       null
     );
   };
@@ -263,7 +283,7 @@ class WebView extends React.Component {
   stopLoading = () => {
     UIManager.dispatchViewManagerCommand(
       this.getWebViewHandle(),
-      UIManager.RCTWebView.Commands.stopLoading,
+      UIManager.BlockableWebView.Commands.stopLoading,
       null
     );
   };
@@ -310,9 +330,14 @@ class WebView extends React.Component {
     });
     this.updateNavigationState(event);
   };
+
+  onNavigationBlocked = (event) => {
+    var {onNavigationBlocked} = this.props;
+    onNavigationBlocked && onNavigationBlocked(event);
+  };
 }
 
-var RCTWebView = requireNativeComponent('RCTWebView', WebView);
+var BlockableWebView = requireNativeComponent('BlockableWebView', WebView);
 
 var styles = StyleSheet.create({
   container: {
