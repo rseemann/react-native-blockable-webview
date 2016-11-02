@@ -6,7 +6,7 @@ A <BlockableWebView/> component for React Native that extends [WebView](https://
 
 `BlockableWebView` component receives all the WebView props plus two more:
 
-- `navigationBlockingPolicies` which is an array with the policies that will be used to block the navigation;
+- `navigationBlockingPolicies` which is an array with the policies that will be used to block the navigation. A policy is an object that contains [Regular Expressions](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions) that will be used to check the state - `currentURL`, `url` and `navigationType` (iOS only).
 - `onNavigationBlocked` which is the callback function that will be called once at least one of the policies is fulfilled. It receives the `NativeEvent` just at any other WebView loading callback.
 
 For further uses please check the example project.

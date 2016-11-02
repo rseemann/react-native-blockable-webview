@@ -24,7 +24,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		DD658C6D1DB6AF2F00B91781 /* BlockableWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD658C6C1DB6AF2F00B91781 /* BlockableWebView.m */; };
-		DD658C7A1DB6AF5900B91781 /* BlockableWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD658C791DB6AF5900B91781 /* BlockableWebViewManager.m */; };
+		DD92EEEE1DCA9ED2008ED1B8 /* BlockableWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD92EEED1DCA9ED2008ED1B8 /* BlockableWebViewManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,8 +131,8 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		DD658C6B1DB6AF2F00B91781 /* BlockableWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlockableWebView.h; path = example/BlockableWebView.h; sourceTree = "<group>"; };
 		DD658C6C1DB6AF2F00B91781 /* BlockableWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlockableWebView.m; path = example/BlockableWebView.m; sourceTree = "<group>"; };
-		DD658C781DB6AF5900B91781 /* BlockableWebViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockableWebViewManager.h; sourceTree = "<group>"; };
-		DD658C791DB6AF5900B91781 /* BlockableWebViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockableWebViewManager.m; sourceTree = "<group>"; };
+		DD92EEEC1DCA9ED2008ED1B8 /* BlockableWebViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BlockableWebViewManager.h; path = example/BlockableWebViewManager.h; sourceTree = "<group>"; };
+		DD92EEED1DCA9ED2008ED1B8 /* BlockableWebViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BlockableWebViewManager.m; path = example/BlockableWebViewManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +240,8 @@
 		13B07FAE1A68108700A75B9A /* example */ = {
 			isa = PBXGroup;
 			children = (
+				DD92EEEC1DCA9ED2008ED1B8 /* BlockableWebViewManager.h */,
+				DD92EEED1DCA9ED2008ED1B8 /* BlockableWebViewManager.m */,
 				DD658C6B1DB6AF2F00B91781 /* BlockableWebView.h */,
 				DD658C6C1DB6AF2F00B91781 /* BlockableWebView.m */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -249,8 +251,6 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				DD658C781DB6AF5900B91781 /* BlockableWebViewManager.h */,
-				DD658C791DB6AF5900B91781 /* BlockableWebViewManager.m */,
 			);
 			name = example;
 			sourceTree = "<group>";
@@ -557,7 +557,7 @@
 				DD658C6D1DB6AF2F00B91781 /* BlockableWebView.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				DD658C7A1DB6AF5900B91781 /* BlockableWebViewManager.m in Sources */,
+				DD92EEEE1DCA9ED2008ED1B8 /* BlockableWebViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
