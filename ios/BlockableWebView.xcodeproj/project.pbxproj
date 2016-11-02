@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DD11130D1DB5741600ADABCA /* BlockableWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD11130C1DB5741600ADABCA /* BlockableWebView.m */; };
-		DD11130E1DB5741600ADABCA /* BlockableWebView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = DD11130B1DB5741600ADABCA /* BlockableWebView.h */; };
+		DD92EF321DCAA500008ED1B8 /* BlockableWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = DD92EF2F1DCAA500008ED1B8 /* BlockableWebView.m */; };
+		DD92EF331DCAA500008ED1B8 /* BlockableWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DD92EF311DCAA500008ED1B8 /* BlockableWebViewManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -18,7 +18,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				DD11130E1DB5741600ADABCA /* BlockableWebView.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -26,8 +25,10 @@
 
 /* Begin PBXFileReference section */
 		DD1113081DB5741600ADABCA /* libBlockableWebView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBlockableWebView.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD11130B1DB5741600ADABCA /* BlockableWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockableWebView.h; sourceTree = "<group>"; };
-		DD11130C1DB5741600ADABCA /* BlockableWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockableWebView.m; sourceTree = "<group>"; };
+		DD92EF2E1DCAA500008ED1B8 /* BlockableWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockableWebView.h; sourceTree = "<group>"; };
+		DD92EF2F1DCAA500008ED1B8 /* BlockableWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockableWebView.m; sourceTree = "<group>"; };
+		DD92EF301DCAA500008ED1B8 /* BlockableWebViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockableWebViewManager.h; sourceTree = "<group>"; };
+		DD92EF311DCAA500008ED1B8 /* BlockableWebViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockableWebViewManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +45,10 @@
 		DD1112FF1DB5741600ADABCA = {
 			isa = PBXGroup;
 			children = (
-				DD11130A1DB5741600ADABCA /* BlockableWebView */,
+				DD92EF2E1DCAA500008ED1B8 /* BlockableWebView.h */,
+				DD92EF2F1DCAA500008ED1B8 /* BlockableWebView.m */,
+				DD92EF301DCAA500008ED1B8 /* BlockableWebViewManager.h */,
+				DD92EF311DCAA500008ED1B8 /* BlockableWebViewManager.m */,
 				DD1113091DB5741600ADABCA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,15 +59,6 @@
 				DD1113081DB5741600ADABCA /* libBlockableWebView.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		DD11130A1DB5741600ADABCA /* BlockableWebView */ = {
-			isa = PBXGroup;
-			children = (
-				DD11130B1DB5741600ADABCA /* BlockableWebView.h */,
-				DD11130C1DB5741600ADABCA /* BlockableWebView.m */,
-			);
-			path = BlockableWebView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,7 +118,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD11130D1DB5741600ADABCA /* BlockableWebView.m in Sources */,
+				DD92EF321DCAA500008ED1B8 /* BlockableWebView.m in Sources */,
+				DD92EF331DCAA500008ED1B8 /* BlockableWebViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +217,11 @@
 		DD1113121DB5741600ADABCA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native/React/**",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -230,6 +231,11 @@
 		DD1113131DB5741600ADABCA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../react-native/React/**",
+					"$(SRCROOT)/../node_modules/react-native/React/**",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -255,6 +261,7 @@
 				DD1113131DB5741600ADABCA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
