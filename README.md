@@ -11,7 +11,7 @@ A <BlockableWebView/> component for React Native that extends [WebView](https://
 
 For further uses please check the example project.
 
-```
+```js
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -44,10 +44,11 @@ export default class Controlled extends Component {
     const hostname = new URL(url).hostname;
 
     if (hostname === 'github.com') {
-      this.props.navigator.push({ scene: 'login', url });
+      /* this would only happen for requests to the login url. We can take the user to a RN view that will handle that, for example */
       return;
     }
 
+    // Url isn't inside github.com, open it in the browser
     Linking.openURL(url);
   }
 
