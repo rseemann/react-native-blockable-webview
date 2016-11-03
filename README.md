@@ -2,6 +2,11 @@
 
 A <BlockableWebView/> component for React Native that extends [WebView](https://facebook.github.io/react-native/docs/webview.html) and allow the blocking of navigation to urls based on rules passed via `props`. This allows the loading control to be done from the JavaScript side without having to rely on some possible faulty methods, such as mentioned [here](https://github.com/facebook/react-native/pull/6478).
 
+## Installation
+
+1. `npm install react-native-blockable-webview`;
+2. `react-native link react-native-blockable-webview`;
+
 ## Usage
 
 `BlockableWebView` component receives all the WebView props plus two more:
