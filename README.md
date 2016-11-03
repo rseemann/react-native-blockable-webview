@@ -4,7 +4,7 @@ A <BlockableWebView/> component for React Native that extends [WebView](https://
 
 ## Installation
 
-1. `npm install react-native-blockable-webview`;
+1. `npm install --save react-native-blockable-webview`;
 2. `react-native link react-native-blockable-webview`;
 
 ## Usage
